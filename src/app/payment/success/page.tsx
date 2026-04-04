@@ -1,7 +1,27 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { supabase } from "@/lib/supabase";
 import { Mascot } from "@/components/mascot";
 
 export default function PaymentSuccessPage() {
+  const router = useRouter();
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (!user) {
+        router.push("/auth");
+      } else {
+        setReady(true);
+      }
+    });
+  }, [router]);
+
+  if (!ready) return null;
+
   return (
     <div className="flex flex-1 items-center justify-center px-6 py-20">
       <div className="max-w-md text-center">
