@@ -13,6 +13,8 @@ export default function DashboardPage() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<SubStatus>("loading");
   const [billingLoading, setBillingLoading] = useState(false);
+  const [cancelled, setCancelled] = useState(false);
+  const [periodEnd, setPeriodEnd] = useState("");
 
   useEffect(() => {
     async function load() {
@@ -33,6 +35,10 @@ export default function DashboardPage() {
 
       if (sub && (sub.status === "active" || sub.status === "cancelled") && new Date(sub.current_period_end) > new Date()) {
         setStatus("pro");
+        if (sub.status === "cancelled") {
+          setCancelled(true);
+          setPeriodEnd(new Date(sub.current_period_end).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }));
+        }
       } else {
         setStatus("free");
       }
@@ -91,6 +97,11 @@ export default function DashboardPage() {
               You&apos;re all set!
             </h1>
             <p className="mt-2 text-sm text-[#666]">{email}</p>
+            {cancelled && (
+              <div className="mt-4 rounded-lg border border-[#d4a017]/30 bg-[#d4a017]/10 px-4 py-3 text-sm text-[#d4a017]">
+                Your subscription has been cancelled and will end on {periodEnd}.
+              </div>
+            )}
             <p className="mt-4 text-[#888] leading-relaxed">
               You have full access to Bite Pro — 200 summaries per day and unlimited chat.
               Head to your Chrome extension and start biting.
