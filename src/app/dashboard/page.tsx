@@ -12,6 +12,7 @@ export default function DashboardPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<SubStatus>("loading");
+  const [billingLoading, setBillingLoading] = useState(false);
 
   useEffect(() => {
     async function load() {
@@ -40,6 +41,32 @@ export default function DashboardPage() {
     load();
   }, [router]);
 
+  async function handleManageBilling() {
+    setBillingLoading(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      const resp = await fetch(
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/create-portal-session`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!}`,
+            "x-user-token": session?.access_token || "",
+          },
+        }
+      );
+      const data = await resp.json();
+      if (data.error) throw new Error(data.error);
+      if (data.url) window.location.href = data.url;
+    } catch (err: any) {
+      console.error("Billing portal error:", err);
+    } finally {
+      setBillingLoading(false);
+    }
+  }
+
   if (status === "loading") {
     return (
       <div className="flex flex-1 items-center justify-center py-20">
@@ -57,7 +84,7 @@ export default function DashboardPage() {
 
         {status === "pro" ? (
           <>
-            <div className="inline-block rounded-full bg-[#6366f1]/20 px-3 py-1 text-xs font-semibold text-[#6366f1] mb-4">
+            <div className="inline-block rounded-full px-3 py-1 text-xs font-semibold text-[#d4a017] mb-4" style={{ background: "linear-gradient(135deg, rgba(212,160,23,0.2), rgba(245,197,66,0.15))", border: "1px solid rgba(212,160,23,0.3)" }}>
               Pro
             </div>
             <h1 className="text-2xl font-bold text-white">
@@ -68,14 +95,23 @@ export default function DashboardPage() {
               You have full access to Bite Pro — 200 summaries per day and unlimited chat.
               Head to your Chrome extension and start biting.
             </p>
-            <a
-              href="https://chrome.google.com/webstore/detail/nejgdcmbmkfdpkpflcjiabdbjfjghnfn"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-block rounded-lg bg-[#6366f1] px-8 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-            >
-              Go Bite Something
-            </a>
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="https://chrome.google.com/webstore/detail/nejgdcmbmkfdpkpflcjiabdbjfjghnfn"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg bg-[#6366f1] px-8 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              >
+                Go Bite Something
+              </a>
+              <button
+                onClick={handleManageBilling}
+                disabled={billingLoading}
+                className="rounded-lg border border-[#333] px-8 py-3 text-sm font-semibold text-[#ccc] transition-all hover:border-[#555] hover:text-white disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {billingLoading ? "Loading..." : "Manage Billing"}
+              </button>
+            </div>
           </>
         ) : (
           <>
