@@ -2,15 +2,32 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
 import { Mascot } from "./mascot";
 
 export function Navbar() {
   const pathname = usePathname();
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => {
+      setLoggedIn(!!data.user);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setLoggedIn(!!session?.user);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   const links = [
     { href: "/", label: "Home" },
     { href: "/pricing", label: "Pricing" },
-    { href: "/auth", label: "Sign In" },
+    loggedIn
+      ? { href: "/dashboard", label: "Dashboard" }
+      : { href: "/auth", label: "Sign In" },
   ];
 
   return (

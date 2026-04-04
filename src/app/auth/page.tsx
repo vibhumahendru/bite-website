@@ -30,7 +30,7 @@ function AuthForm() {
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
       if (data.user) {
-        router.push(redirect ? `/${redirect}` : "/");
+        router.push(redirect ? `/${redirect}` : "/dashboard");
       }
     });
   }, [router, redirect]);
@@ -71,7 +71,7 @@ function AuthForm() {
           password,
         });
         if (signInError) throw signInError;
-        router.push(redirect ? `/${redirect}` : "/");
+        router.push(redirect ? `/${redirect}` : "/dashboard");
       }
     } catch (err: any) {
       let msg = err.message || "Something went wrong";
