@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Image from "next/image";
 import { Mascot } from "@/components/mascot";
 
 export default function PaymentSuccessPage() {
@@ -8,21 +8,24 @@ export default function PaymentSuccessPage() {
         <div className="flex justify-center mb-6">
           <Mascot size={100} />
         </div>
-        <h1 className="text-2xl font-bold text-white">You&apos;re all set!</h1>
+        <div className="inline-block rounded-full bg-[#6366f1]/20 px-3 py-1 text-xs font-semibold text-[#6366f1] mb-4">
+          Pro
+        </div>
+        <h1 className="text-2xl font-bold text-white">Welcome to Bite Pro!</h1>
         <p className="mt-4 text-[#888] leading-relaxed">
-          Welcome to Bite Pro. Your subscription is active and you now have
-          access to 200 summaries per day and unlimited follow-up chat.
+          You&apos;re all set — 200 summaries per day and unlimited follow-up chat are now unlocked.
+          Open the Bite extension in Chrome and start biting.
         </p>
-        <p className="mt-6 text-sm text-[#666]">
-          Head back to your Chrome extension to start biting.
-        </p>
-        <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="/"
-            className="rounded-lg border border-[#333] px-6 py-3 text-sm font-semibold text-[#ccc] transition-all hover:border-[#555] hover:text-white"
+        <div className="mt-8">
+          <a
+            href="https://chrome.google.com/webstore/detail/nejgdcmbmkfdpkpflcjiabdbjfjghnfn"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#6366f1] px-8 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
           >
-            Back to Home
-          </Link>
+            <Image src="/chrome.png" alt="" width={18} height={18} />
+            Open Bite Extension
+          </a>
         </div>
       </div>
     </div>
