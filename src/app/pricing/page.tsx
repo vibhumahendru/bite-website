@@ -57,7 +57,7 @@ export default function PricingPage() {
         <div className="rounded-xl border border-[#2a2a4a] bg-[#16213e] p-8">
           <h3 className="text-lg font-bold text-white">Free</h3>
           <div className="mt-4">
-            <span className="text-3xl font-bold text-white">$0</span>
+            <span className="text-3xl font-bold text-white">£0</span>
             <span className="text-[#666]"> / forever</span>
           </div>
           <p className="mt-2 text-sm text-[#888]">After your 7-day trial</p>
@@ -84,7 +84,7 @@ export default function PricingPage() {
           </div>
           <h3 className="text-lg font-bold text-white">Pro</h3>
           <div className="mt-4">
-            <span className="text-3xl font-bold text-white">$5</span>
+            <span className="text-3xl font-bold text-white">£5</span>
             <span className="text-[#666]"> / month</span>
           </div>
           <p className="mt-2 text-sm text-[#888]">7-day free trial included</p>
