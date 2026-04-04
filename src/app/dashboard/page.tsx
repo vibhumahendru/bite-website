@@ -31,7 +31,7 @@ export default function DashboardPage() {
         .eq("user_id", user.id)
         .single();
 
-      if (sub && sub.status === "active" && new Date(sub.current_period_end) > new Date()) {
+      if (sub && (sub.status === "active" || sub.status === "cancelled") && new Date(sub.current_period_end) > new Date()) {
         setStatus("pro");
       } else {
         setStatus("free");
