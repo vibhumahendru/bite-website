@@ -16,7 +16,24 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Bite - Bite-sized summaries for any page",
   description:
-    "Instantly summarize any webpage or YouTube video into bite-sized insights, then chat with the content to dig deeper.",
+    "Bite is a Chrome extension that instantly summarizes any webpage or YouTube video into bite-sized insights, then lets you chat with the content to dig deeper.",
+  icons: {
+    icon: "/favicon.png",
+    apple: "/mascot.png",
+  },
+  openGraph: {
+    title: "Bite - Bite-sized summaries for any page",
+    description:
+      "Bite is a Chrome extension that instantly summarizes any webpage or YouTube video into bite-sized insights, then lets you chat with the content to dig deeper.",
+    siteName: "Bite",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bite - Bite-sized summaries for any page",
+    description:
+      "Bite is a Chrome extension that instantly summarizes any webpage or YouTube video into bite-sized insights.",
+  },
 };
 
 export default function RootLayout({
