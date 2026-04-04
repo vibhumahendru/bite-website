@@ -30,6 +30,7 @@ export default function PricingPage() {
           headers: {
             "Content-Type": "application/json",
             apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+            Authorization: `Bearer ${session?.access_token || ""}`,
             "x-user-token": session?.access_token || "",
           },
         }
