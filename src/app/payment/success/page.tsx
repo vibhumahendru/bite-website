@@ -8,7 +8,7 @@ export default function PaymentSuccessPage() {
         <div className="flex justify-center mb-6">
           <Mascot size={100} />
         </div>
-        <div className="inline-block rounded-full bg-[#6366f1]/20 px-3 py-1 text-xs font-semibold text-[#6366f1] mb-4">
+        <div className="inline-block rounded-full px-3 py-1 text-xs font-semibold text-[#d4a017] mb-4" style={{ background: "linear-gradient(135deg, rgba(212,160,23,0.2), rgba(245,197,66,0.15))", border: "1px solid rgba(212,160,23,0.3)" }}>
           Pro
         </div>
         <h1 className="text-2xl font-bold text-white">Welcome to Bite Pro!</h1>
