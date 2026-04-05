@@ -116,7 +116,7 @@ function AuthForm() {
           />
           <input
             type="password"
-            placeholder="Password (min 6 characters)"
+            placeholder={isSignUp ? "Password (min 6 characters)" : "Password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full rounded-lg border border-[#333] bg-[#1a1a2e] px-4 py-3 text-sm text-white outline-none focus:border-[#6366f1] transition-colors"
