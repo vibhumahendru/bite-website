@@ -16,8 +16,11 @@ export function ScrollDemo() {
       const elHeight = el.offsetHeight;
       const windowH = window.innerHeight;
 
-      const scrolledInto = -rect.top;
-      const scrollableRange = elHeight - windowH;
+      // Start progress when the container top is 60% down the viewport
+      // (i.e. user starts seeing the image), finish at end of scroll range
+      const startOffset = windowH * 0.6;
+      const scrolledInto = -(rect.top - startOffset);
+      const scrollableRange = elHeight - windowH + startOffset;
 
       if (scrollableRange <= 0) return;
 
@@ -30,9 +33,10 @@ export function ScrollDemo() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Bite panel slides in from 68% to 100% visible
   const panelProgress = Math.max(0, Math.min(1, progress / 0.85));
-  const visiblePercent = 68 + panelProgress * 32;
+  // YouTube shrinks from 100% to 62% width, panel takes the remaining 38%
+  const panelWidthPercent = 38;
+  const ytWidth = 100 - panelProgress * panelWidthPercent; // 100% -> 62%
   const glowOpacity = Math.min(panelProgress * 1.5, 0.6);
 
   return (
@@ -41,35 +45,44 @@ export function ScrollDemo() {
         <div className="flex h-full flex-col items-center justify-center px-4">
           <div
             className="relative w-full overflow-hidden rounded-xl border border-[#2a2a4a] shadow-2xl shadow-black/50"
-            style={{ maxHeight: "calc(100vh - 100px)" }}
+            style={{ maxWidth: "1100px", maxHeight: "calc(100vh - 100px)" }}
           >
-            <div className="relative overflow-hidden" style={{ aspectRatio: "3018/1646" }}>
+            <div className="relative flex" style={{ aspectRatio: "16/10" }}>
+              {/* YouTube page — shrinks as panel slides in */}
               <div
-                className="absolute inset-0"
-                style={{
-                  width: `${(100 / visiblePercent) * 100}%`,
-                  clipPath: `inset(0 ${100 - visiblePercent}% 0 0)`,
-                }}
+                className="relative h-full shrink-0 overflow-hidden"
+                style={{ width: `${ytWidth}%` }}
               >
                 <Image
-                  src="/demo-full.png"
-                  alt="YouTube video with Bite extension summarizing Joe Rogan Experience podcast with Elon Musk"
+                  src="/demo-yt.png"
+                  alt="YouTube video page showing Joe Rogan Experience with Elon Musk"
                   fill
                   className="object-cover object-left-top"
                   priority
                 />
               </div>
 
-              {/* Glow on panel edge */}
-              {panelProgress > 0.05 && (
-                <div
-                  className="pointer-events-none absolute top-0 bottom-0 w-8"
-                  style={{
-                    right: `${100 - visiblePercent}%`,
-                    background: `linear-gradient(to right, transparent, rgba(99, 102, 241, ${glowOpacity * 0.3}), transparent)`,
-                  }}
+              {/* Bite panel — grows in from the right */}
+              <div
+                className="relative h-full shrink-0 overflow-hidden"
+                style={{ width: `${panelWidthPercent}%` }}
+              >
+                {/* Glow on panel edge */}
+                {panelProgress > 0.05 && (
+                  <div
+                    className="pointer-events-none absolute top-0 bottom-0 left-0 w-4 z-10 -translate-x-1/2"
+                    style={{
+                      background: `linear-gradient(to right, transparent, rgba(99, 102, 241, ${glowOpacity * 0.4}))`,
+                    }}
+                  />
+                )}
+                <Image
+                  src="/demo-panel.png"
+                  alt="Bite extension panel showing summary"
+                  fill
+                  className="object-cover object-left-top"
                 />
-              )}
+              </div>
             </div>
           </div>
 

@@ -44,16 +44,24 @@ export default function Home() {
 
       {/* Interactive Demo — YouTube with Bite panel sliding in */}
       <section className="border-t border-[#2a2a4a] py-20">
-        <h2 className="mb-4 text-center text-2xl font-bold text-white px-6">
-          Here&apos;s what it looks like
+        <h2 className="mb-6 text-center text-4xl sm:text-5xl font-bold text-white px-6">
+          Here&apos;s how it works
         </h2>
+        <div className="mx-auto mb-10 w-16 border-t border-[#333]" />
+        <h3 className="mb-2 text-center text-2xl sm:text-3xl font-bold text-white px-6">
+          YouTube video too long? <span className="text-[#6366f1]">Bite it.</span>
+        </h3>
+        <p className="mb-8 text-center text-[#888] max-w-lg mx-auto px-6">
+          That 3-hour podcast or lecture you keep putting off? Get every key insight,
+          argument, and takeaway in seconds — not hours.
+        </p>
         <ScrollDemo />
       </section>
 
       {/* Showcase: Economist — long articles */}
       <section className="border-t border-[#2a2a4a] px-6 py-20">
         <div className="mx-auto max-w-6xl">
-          <h2 className="mb-3 text-center text-2xl font-bold text-white leading-tight">
+          <h2 className="mb-3 text-center text-2xl sm:text-3xl font-bold text-white leading-tight">
             Article too long? <span className="text-[#6366f1]">Bite it.</span>
           </h2>
           <p className="mb-10 text-center text-[#888] max-w-lg mx-auto">
@@ -75,7 +83,7 @@ export default function Home() {
       {/* Showcase: Booking.com — chat with any page */}
       <section className="border-t border-[#2a2a4a] px-6 py-20">
         <div className="mx-auto max-w-6xl">
-          <h2 className="mb-3 text-center text-2xl font-bold text-white leading-tight">
+          <h2 className="mb-3 text-center text-2xl sm:text-3xl font-bold text-white leading-tight">
             Chat to <span className="text-[#6366f1]">dig deeper.</span>
           </h2>
           <p className="mb-10 text-center text-[#888] max-w-lg mx-auto">
@@ -97,7 +105,7 @@ export default function Home() {
       {/* Showcase: Panels — summary + chat close-up */}
       <section className="border-t border-[#2a2a4a] px-6 py-20">
         <div className="mx-auto max-w-6xl">
-          <h2 className="mb-3 text-center text-2xl font-bold text-white leading-tight">
+          <h2 className="mb-3 text-center text-2xl sm:text-3xl font-bold text-white leading-tight">
             Summaries & chat, <span className="text-[#6366f1]">side by side.</span>
           </h2>
           <p className="mb-10 text-center text-[#888] max-w-lg mx-auto">
@@ -119,7 +127,7 @@ export default function Home() {
       {/* How it works steps */}
       <section className="border-t border-[#2a2a4a] px-6 py-20">
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-12 text-center text-2xl font-bold text-white">
+          <h2 className="mb-12 text-center text-2xl sm:text-3xl font-bold text-white">
             Three steps. That&apos;s it.
           </h2>
           <div className="grid gap-8 sm:grid-cols-3">
@@ -144,7 +152,7 @@ export default function Home() {
 
       {/* CTA */}
       <section className="border-t border-[#2a2a4a] px-6 py-20 text-center">
-        <h2 className="text-2xl font-bold text-white">
+        <h2 className="text-2xl sm:text-3xl font-bold text-white">
           Ready to save hours of reading?
         </h2>
         <p className="mt-3 text-[#888]">
