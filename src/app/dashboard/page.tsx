@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { supabase } from "@/lib/supabase";
 import { Mascot } from "@/components/mascot";
 
@@ -134,25 +135,24 @@ export default function DashboardPage() {
             </h1>
             <p className="mt-2 text-sm text-[#666]">{email}</p>
             <p className="mt-4 text-[#888] leading-relaxed">
-              You&apos;re on the free tier — 3 summaries per day.
-              Head to the Chrome extension to start biting, or upgrade to Pro for 200 summaries
-              and unlimited chat.
+              You&apos;re all set — start biting pages and YouTube videos right from your browser.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/pricing"
-                className="rounded-lg bg-[#6366f1] px-8 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-              >
-                Upgrade to Pro
-              </Link>
               <a
                 href="https://chromewebstore.google.com/detail/nejgdcmbmkfdpkpflcjiabdbjfjghnfn"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="rounded-lg bg-[#6366f1] px-8 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 inline-flex items-center gap-2"
+              >
+                <Image src="/chrome.png" alt="" width={18} height={18} />
+                Get the Chrome Extension
+              </a>
+              <Link
+                href="/pricing"
                 className="rounded-lg border border-[#333] px-8 py-3 text-sm font-semibold text-[#ccc] transition-all hover:border-[#555] hover:text-white"
               >
-                Get the Extension
-              </a>
+                Upgrade to Pro
+              </Link>
             </div>
           </>
         )}

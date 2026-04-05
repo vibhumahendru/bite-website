@@ -59,12 +59,20 @@ function AuthForm() {
 
     try {
       if (isSignUp) {
-        const { error: signUpError } = await supabase.auth.signUp({
+        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
           email,
           password,
         });
         if (signUpError) throw signUpError;
-        setSuccess("Check your email to confirm your account!");
+        // Auto-confirm is on, so user is logged in immediately
+        if (signUpData.session) {
+          router.push(redirect ? `/${redirect}` : "/dashboard");
+          return;
+        }
+        // Fallback: sign them in directly
+        const { error: autoSignInError } = await supabase.auth.signInWithPassword({ email, password });
+        if (autoSignInError) throw autoSignInError;
+        router.push(redirect ? `/${redirect}` : "/dashboard");
       } else {
         const { error: signInError } = await supabase.auth.signInWithPassword({
           email,
