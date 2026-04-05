@@ -38,7 +38,7 @@ export default function PaymentSuccessPage() {
         </p>
         <div className="mt-8">
           <a
-            href="https://chrome.google.com/webstore/detail/nejgdcmbmkfdpkpflcjiabdbjfjghnfn"
+            href="https://chromewebstore.google.com/detail/nejgdcmbmkfdpkpflcjiabdbjfjghnfn"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-lg bg-[#6366f1] px-8 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"

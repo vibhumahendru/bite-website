@@ -25,7 +25,7 @@ export default function Home() {
         </p>
         <div className="mt-6 flex flex-col sm:flex-row gap-4">
           <a
-            href="https://chrome.google.com/webstore/detail/nejgdcmbmkfdpkpflcjiabdbjfjghnfn"
+            href="https://chromewebstore.google.com/detail/nejgdcmbmkfdpkpflcjiabdbjfjghnfn"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-lg bg-[#6366f1] px-8 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 inline-flex items-center gap-2"
@@ -151,7 +151,7 @@ export default function Home() {
           7-day free trial. No credit card required.
         </p>
         <a
-          href="https://chrome.google.com/webstore/detail/nejgdcmbmkfdpkpflcjiabdbjfjghnfn"
+          href="https://chromewebstore.google.com/detail/nejgdcmbmkfdpkpflcjiabdbjfjghnfn"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-8 inline-block rounded-lg bg-[#22c55e] px-8 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"

@@ -108,7 +108,7 @@ export default function DashboardPage() {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://chrome.google.com/webstore/detail/nejgdcmbmkfdpkpflcjiabdbjfjghnfn"
+                href="https://chromewebstore.google.com/detail/nejgdcmbmkfdpkpflcjiabdbjfjghnfn"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-lg bg-[#6366f1] px-8 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
@@ -146,7 +146,7 @@ export default function DashboardPage() {
                 Upgrade to Pro
               </Link>
               <a
-                href="https://chrome.google.com/webstore/detail/nejgdcmbmkfdpkpflcjiabdbjfjghnfn"
+                href="https://chromewebstore.google.com/detail/nejgdcmbmkfdpkpflcjiabdbjfjghnfn"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-lg border border-[#333] px-8 py-3 text-sm font-semibold text-[#ccc] transition-all hover:border-[#555] hover:text-white"
