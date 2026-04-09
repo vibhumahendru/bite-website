@@ -152,13 +152,22 @@ function AuthForm() {
           <p className="mt-4 text-center text-xs text-[#22c55e]">{success}</p>
         )}
 
+        {!isSignUp && (
+          <button
+            onClick={() => router.push("/reset-password")}
+            className="mt-3 w-full text-center text-xs text-[#666] hover:text-[#999]"
+          >
+            Forgot password?
+          </button>
+        )}
+
         <button
           onClick={() => {
             setIsSignUp(!isSignUp);
             setError("");
             setSuccess("");
           }}
-          className="mt-4 w-full text-center text-xs text-[#6366f1] hover:underline"
+          className="mt-3 w-full text-center text-xs text-[#6366f1] hover:underline"
         >
           {isSignUp
             ? "Already have an account? Sign In"
