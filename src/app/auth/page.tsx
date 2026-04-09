@@ -66,32 +66,12 @@ function AuthForm() {
         if (signUpError) throw signUpError;
         // Auto-confirm is on, so user is logged in immediately
         if (signUpData.session) {
-          // Send welcome email (fire-and-forget)
-          fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/send-email`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
-              apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-            },
-            body: JSON.stringify({ type: "welcome", email, name: "" }),
-          }).catch(() => {});
           router.push(redirect ? `/${redirect}` : "/dashboard");
           return;
         }
         // Fallback: sign them in directly
         const { error: autoSignInError } = await supabase.auth.signInWithPassword({ email, password });
         if (autoSignInError) throw autoSignInError;
-        // Send welcome email (fire-and-forget)
-        fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/send-email`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
-            apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-          },
-          body: JSON.stringify({ type: "welcome", email, name: "" }),
-        }).catch(() => {});
         router.push(redirect ? `/${redirect}` : "/dashboard");
       } else {
         const { error: signInError } = await supabase.auth.signInWithPassword({
